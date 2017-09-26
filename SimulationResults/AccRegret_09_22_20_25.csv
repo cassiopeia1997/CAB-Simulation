@@ -1,0 +1,2 @@
+Time(Iteration),CAB_original,CAB_true_decrease,CAB_optimal,LinUCB
+0,7.42220933528,7.08468075289,7.08468075289,7.27009982195

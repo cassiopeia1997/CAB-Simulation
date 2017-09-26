@@ -1,0 +1,2 @@
+Time(Iteration),CAB_originalCoTheta,CAB_true_decreaseCoTheta,CAB_optimalCoTheta,LinUCBCoTheta,,,,,,
+0,0.966069868612,0.975872796956,0.975872796956,0.975768896132,,,,,,
