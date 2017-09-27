@@ -8,9 +8,9 @@ import os.path
 from conf import sim_files_folder, save_address
 from sklearn import linear_model
 import matplotlib.pyplot as plt  
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-from statsmodels.sandbox.regression.predstd import wls_prediction_std
+#import statsmodels.api as sm
+#from statsmodels.formula.api import ols
+#from statsmodels.sandbox.regression.predstd import wls_prediction_std
 
 class CABUserStruct(LinUCBUserStruct):
 	def __init__(self,featureDimension,  lambda_, userID):
