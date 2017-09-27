@@ -8,9 +8,7 @@ import os.path
 from conf import sim_files_folder, save_address
 from sklearn import linear_model
 import matplotlib.pyplot as plt  
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-from statsmodels.sandbox.regression.predstd import wls_prediction_std
+
 
 class CABUserStruct(LinUCBUserStruct):
 	def __init__(self,featureDimension,  lambda_, userID):
@@ -23,20 +21,7 @@ class CABUserStruct(LinUCBUserStruct):
 		self.CoTheta= np.zeros(featureDimension)
 		self.d = featureDimension
 		self.ID = userID
-		self.betaA={}
-		self.betab={}
-		self.hisReward=[]
-		self.hisArticle=[]
-		self.hisjReward={}
-		self.betaj={}
-		self.cbbetaj={}
-		self.linearmodel={}
-		for i in range(30):
-			self.hisjReward[i]=[]
-			self.betaj[i]=np.zeros(featureDimension)
-			self.cbbetaj[i]=0
-			self.betaA[i]=lambda_*np.identity(n = featureDimension)
-			self.betab[i]=np.zeros(self.d)
+	
 			
 		
 		
