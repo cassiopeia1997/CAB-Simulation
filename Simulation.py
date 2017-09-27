@@ -725,7 +725,7 @@ if __name__ == '__main__':
 		#algorithms['CAB_cbij']=CABAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,option=3)
 		#algorithms['CAB_reject']=CABAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,option=4)
 		#algorithms['CAB_true_increase']=CABidealAlgorithmincrease(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18)
-		#algorithms['CAB_5_2']=CABidealAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,true_num=5, false_num=2)
+		#algorithms['CAB_5_6']=CABidealAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,true_num=5, false_num=2)
 		#algorithms['CAB_2_3']=CABidealAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,true_num=2, false_num=3)
 		#algorithms['CAB_3_1']=CABidealAlgorithm(dimension=context_dimension,alpha=alpha,lambda_=lambda_, n=n_users,alpha_2 = 0.18,true_num=3, false_num=1)
 		
