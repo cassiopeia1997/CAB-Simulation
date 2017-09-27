@@ -23,21 +23,7 @@ class CABUserStruct(LinUCBUserStruct):
 		self.CoTheta= np.zeros(featureDimension)
 		self.d = featureDimension
 		self.ID = userID
-		self.betaA={}
-		self.betab={}
-		self.hisReward=[]
-		self.hisArticle=[]
-		self.hisjReward={}
-		self.betaj={}
-		self.cbbetaj={}
-		self.linearmodel={}
-		for i in range(30):
-			self.hisjReward[i]=[]
-			self.betaj[i]=np.zeros(featureDimension)
-			self.cbbetaj[i]=0
-			self.betaA[i]=lambda_*np.identity(n = featureDimension)
-			self.betab[i]=np.zeros(self.d)
-			self.linearmodel[i]=linearmodelj(featureDimension,lambda_,i)
+	
 		
 		
 	def updateParameters(self, articlePicked_FeatureVector, click):
@@ -51,51 +37,8 @@ class CABUserStruct(LinUCBUserStruct):
 		var = np.sqrt(np.dot(np.dot(article_FeatureVector, self.AInv),  article_FeatureVector))
 		pta = alpha * var*np.sqrt(math.log10(time+1))
 		return pta
-	def getBeta(self,alpha,time):
-		
-		
-		for j in self.hisjReward:
-			if j!=self.ID:
-				diff=[]
-				#print(self.hisjReward[j])
-				for k in range(len(self.hisjReward[j])):
-					diff.append(abs(self.hisjReward[j][k]-self.hisReward[k]))
-			
-				
-				linear_model1=sm.OLS(np.array(diff),np.array(self.hisArticle))
-				results=linear_model1.fit()
-				self.betaj[j]=results.params
-
-class linearmodelj():
-	def __init__(self, featureDimension, lambda_, userID):
-		self.d = featureDimension
-		self.A = lambda_*np.identity(n = self.d)
-		self.b = np.zeros(self.d)
-		self.AInv = np.linalg.inv(self.A)
-		
-		self.UserTheta = np.zeros(self.d)
-		
-
-	def updateParameters(self, articlePicked_FeatureVector, click):
-		self.A += np.outer(articlePicked_FeatureVector,articlePicked_FeatureVector)
-		self.b += articlePicked_FeatureVector*click
-		self.AInv = np.linalg.inv(self.A)
-		self.UserTheta = np.dot(self.AInv, self.b)
 	
-	
-	def getA(self):
-		return self.A
-	def getTheta(self):
-		#print(self.UserTheta)
-		return self.UserTheta
 
-	def getCB(self, alpha, article_FeatureVector,time):
-		
-		mean = np.dot(self.UserTheta,  article_FeatureVector)
-		var = np.sqrt(np.dot(np.dot(article_FeatureVector, self.AInv),  article_FeatureVector))
-		#pta = mean + alpha * var
-		pta=mean+alpha * var*np.sqrt(math.log10(time+1))
-		return pta
 
 
 class CABidealAlgorithm():
@@ -218,20 +161,8 @@ class CABidealAlgorithm():
 		
 	
 	def updateParameters(self, articlePicked, click,userID,gamma):
-		self.selectedGroup[userID]=[]
-		#self.users[userID].updateParameters(articlePicked.contextFeatureVector[:self.dimension], click)
-		self.users[userID].hisReward.append(click)
-		self.users[userID].hisArticle.append(articlePicked.contextFeatureVector[:self.dimension])
-		for j in range(self.userNum):
-			if j!=userID:
-				
-				rj=np.dot(self.users[j].CoTheta,articlePicked.contextFeatureVector[:self.dimension])
-				self.users[userID].hisjReward[j].append(rj)
-				
-				if abs(rj-click)<=self.users[j].getCBP(self.alpha,articlePicked.contextFeatureVector[:self.dimension],self.time):
-					self.selectedGroup[userID].append(j)
 		
-		self.users[userID].getBeta(self.alpha,self.time)
+		
 		clusterNow=[]
 		if(self.users[userID].getCBP(self.alpha,articlePicked.contextFeatureVector[:self.dimension],self.time)>=-1):
 			self.users[userID].updateParameters(articlePicked.contextFeatureVector[:self.dimension], click)
