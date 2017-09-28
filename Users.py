@@ -104,36 +104,14 @@ class UserManager():
 				thetaSave.append(thetaVector1Final)
 				j=len(thetaSave)-1
 				
-		'''		
-			for i in range(6):
-				users.append(User(key,thetaSave[i]))
-				key=key+1
-		'''	
+		
 		
 		for i in range(6):
 			for k in range(5):
 				users.append(User(key,thetaSave[i]))
 				key =key+1
 		
-		'''
-		if (self.UserGroups == 0):
-			key=0
-			for x in range(6):
-				thetaVector = self.thetaFunc(self.dimension, argv = self.argv)
-				l2_norm = np.linalg.norm(thetaVector, ord =2)
-				#print('l2_norm',l2_norm)
-				for i in range(5):
-					users.append(User(key, thetaVector/(0.5*l2_norm)))
-					key=key+1
-		else:
-			for i in range(self.UserGroups):
-				usersids[i] = range(self.userNum*i/self.UserGroups, (self.userNum*(i+1))/self.UserGroups)
-
-				for key in usersids[i]:
-					thetaVector = np.multiply(self.thetaFunc(self.dimension, argv = self.argv), mask[i])
-					l2_norm = np.linalg.norm(thetaVector, ord =2)
-					users.append(User(key, thetaVector/(2*np.sqrt(2)*l2_norm)))
-		'''		
+		
 		return users
 	
 	#def simulateThetafromUsers(self):
